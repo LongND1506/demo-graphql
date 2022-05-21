@@ -1,0 +1,26 @@
+:host {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: whitesmoke;
+
+  .container {
+    height: 100%;
+    .row {
+      height: 100%;
+        
+    }
+  }
+
+  .editor-wrapper__query {
+    min-height: 500px;
+    display: flex;
+  }
+
+  .editor-wrapper__variable {
+    min-height: 300px;
+    display: flex;
+  }
+}
+
+

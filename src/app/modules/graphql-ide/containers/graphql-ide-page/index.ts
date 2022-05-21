@@ -1,0 +1,1 @@
+export * from './graphql-ide-page.component';

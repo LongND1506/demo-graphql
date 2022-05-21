@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7 mb-5">
+      <h3>Form Array:</h3>
+      <div class="btn-group" role="group">
+        <button
+          class="btn btn-secondary btn-small mb-3 btn-primary"
+          (click)="addItemFormArray()"
+        >
+          Add
+        </button>
+
+        <button
+          class="btn btn-secondary btn-small mb-3 btn-warning"
+          (click)="setFormArrayValue()"
+        >
+          Set Value
+        </button>
+        <button
+          class="btn btn-secondary btn-small mb-3 btn-success"
+          (click)="patchFormArrayValue()"
+        >
+          Patch Value
+        </button>
+      </div>
+      <ng-container *ngIf="formArray?.controls?.length">
+        <div
+          class="row mb-3"
+          *ngFor="let control of formArray.controls; let idx = index"
+        >
+          <ng-container [formGroup]="control">
+            <div class="col-5 form-floating">
+              <input
+                formControlName="name"
+                class="form-control"
+                type="text"
+                name="name"
+                id="name"
+                placeholder="AAA"
+              />
+              <label for="name">Name</label>
+            </div>
+            <div class="col-5 form-floating">
+              <input
+                formControlName="age"
+                class="form-control"
+                type="text"
+                name="age"
+                id="age"
+                placeholder="18"
+              />
+              <label for="age">Age</label>
+            </div>
+            <div class="col-2">
+              <button class="btn btn-danger px-3" (click)="removeItem(idx)">
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+            </div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="col-7 mb-5">
+      <h3>Template driven (ngModel)</h3>
+      <province-select
+        [(ngModel)]="provinceModel"
+        name="provinceModel"
+        [provincesList]="provincesList"
+        [type]="'central'"
+        #provinceEl="ngModel"
+      ></province-select>
+      <p>{{ provinceEl.touched ? "touched" : "none touch" }}</p>
+      <p
+        style="color: red"
+        *ngIf="provinceEl.invalid && provinceEl.errors.type"
+      >
+        Type is not correct
+      </p>
+    </div>
+
+    <div class="col-7 mb-5">
+      <h3>Reactive formGroup</h3>
+      <form [formGroup]="formGroup">
+        <province-select
+          [provincesList]="provincesList"
+          formControlName="province"
+          [type]="'central'"
+        ></province-select>
+        <p>{{ getControl("province").touched ? "touched" : "none touch" }}</p>
+        <p
+          style="color: red"
+          *ngIf="
+            getControl('province').invalid && getControl('province').errors.type
+          "
+        >
+          Type is not correct
+        </p>
+      </form>
+    </div>
+  </div>
+</div>

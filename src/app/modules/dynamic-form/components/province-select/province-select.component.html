@@ -1,0 +1,15 @@
+<select
+  (change)="handleOnProvinceChange($event)"
+  (focus)="onTouched()"
+  [disabled]="isDisabled"
+  class="form-select"
+>
+  <option disabled hidden>-- Select a province --</option>
+  <option
+    *ngFor="let province of provincesList"
+    [value]="province.id"
+    [selected]="isSelect(province.id)"
+  >
+    {{ province.name }}
+  </option>
+</select>
