@@ -2,7 +2,12 @@
 @import "styles/vendors/bootstrap-grid";
 @import "styles/vendors/utilities";
 @import 'styles/vendors/graphiql';
+@import "~jsoneditor/dist/jsoneditor.min.css";
 
 body {
     height: 100vh;
 }
+
+div.jsoneditor-mode-code{
+    height:500px; //100vh if you want full screen
+    }

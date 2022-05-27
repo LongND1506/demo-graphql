@@ -4,6 +4,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 import { QueryEditorComponent } from '../../components';
 import { GraphQLService } from '../../services';
 import gqlPrettier from 'graphql-prettier';
+import { JsonEditorOptions } from 'ang-jsoneditor';
 
 @Component({
   selector: 'app-graphql-ide-page',
@@ -17,7 +18,9 @@ export class GraphqlIdePageComponent implements OnInit {
   private _$schema = new BehaviorSubject<GraphQLSchema>(null);
   public $schema = this._$schema.asObservable();
   public validQuery: string;
+  editorOptions: JsonEditorOptions
 
+  queryResult: any;
   constructor(private _graphqlService: GraphQLService) {}
 
   ngOnInit(): void {
@@ -27,6 +30,10 @@ export class GraphqlIdePageComponent implements OnInit {
         this._$schema.next(schema);
       }))
       .subscribe();
+
+    this.editorOptions = new JsonEditorOptions();
+    this.editorOptions.modes = ['code']
+    this.editorOptions.expandAll = true
   }
 
   public onEditorChange(value): void {
@@ -50,11 +57,12 @@ export class GraphqlIdePageComponent implements OnInit {
     this._graphqlService.excuteQuery(this.validQuery).subscribe(
       value => {
         console.log(value)
+        this.queryResult = value
       }
     );
   }
   
-  onPrettyQuery(): void {
+  public onPrettyQuery(): void {
     if(this.validQuery) {
       this.queryEditor.editor?.setValue(gqlPrettier(this.validQuery))
     }

@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { DocumentExplorerComponent } from './components/document-explorer/document-explorer.component';
 import { QueryEditorComponent } from './components/query-editor/query-editor.component';
 import { QueryResultComponent } from './components/query-result/query-result.component';
@@ -11,7 +12,7 @@ import { GraphqlIdePageComponent } from './containers/graphql-ide-page/graphql-i
 import { GraphqlIdeRoutingModule } from './graphql-ide-routing.module';
 import { GraphQLService } from './services';
 
-const MODULES = [TypeaheadModule, TabsModule];
+const MODULES = [TypeaheadModule, TabsModule, NgxJsonViewerModule];
 
 const COMPONENTS = [
   GraphqlIdePageComponent,

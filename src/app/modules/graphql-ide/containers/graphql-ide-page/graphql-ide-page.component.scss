@@ -21,6 +21,9 @@
     min-height: 300px;
     display: flex;
   }
+  
+  .ace_editor.ace-jsoneditor {
+    min-height: 500px;
+  }
+
 }
-
-

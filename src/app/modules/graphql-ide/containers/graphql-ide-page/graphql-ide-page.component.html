@@ -10,8 +10,8 @@
             <variable-editor></variable-editor>
         </div> -->
       </div>
-      <div class="col-6 query-result-wrapper">
-          <query-result></query-result>
+      <div class="col-6 query-result-wrapper"  style="background-color: white;">
+        <ngx-json-viewer [json]="queryResult" [expanded]="true" *ngIf="queryResult"></ngx-json-viewer>
       </div>
       <!-- <div class="col-4 doc-explorer">
           <document-explorer></document-explorer>
